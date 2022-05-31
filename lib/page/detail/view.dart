@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mail_search/bean/entity/mail_item_entity.dart';
+import 'package:mail_search/global/constant.dart';
 
 import '../main/logic.dart';
 import 'logic.dart';
@@ -11,18 +13,19 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  late MailItemEntity itemBean;
   @override
   initState() {
     super.initState();
-    Get.find<DetailLogic>().initMail(Get.arguments['storeid']);
+    itemBean=Get.arguments[ARG_MAIL_ITEM_BEAN];
+    Get.find<DetailLogic>().initMail(itemBean.storeid??"");
   }
 
   @override
   Widget build(BuildContext context) {
     final logic = Get.find<DetailLogic>();
-    final bean = logic.mail.value;
     return Scaffold(
-      appBar: CupertinoNavigationBar(middle: Text("问题详情")),
+      appBar: CupertinoNavigationBar(middle: Text("问题详情(${itemBean.blsj})")),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: GetX<DetailLogic>(
@@ -42,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          Get.arguments['bt'] ?? "",
+                          itemBean.bt ?? "",
                           style: Theme.of(context).textTheme.headlineSmall,
                           textAlign: TextAlign.center,
                         ),

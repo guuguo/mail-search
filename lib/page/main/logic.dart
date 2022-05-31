@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:mail_search/bean/entity/mail_item_entity.dart';
+import 'package:mail_search/global/constant.dart';
 import 'package:mail_search/repository/net_repository.dart';
 import 'package:mail_search/route_config.dart';
 
@@ -18,7 +19,7 @@ class MainLogic extends GetxController {
 
   Future toDetailPage(MailItemEntity item) async {
     return await Get.toNamed(RouteConfig.mail_detail,
-        arguments: {"storeid": item.storeid, "bt": item.bt});
+        arguments: {ARG_MAIL_ITEM_BEAN: item});
   }
 
   Future<void> init() async {

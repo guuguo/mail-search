@@ -1,0 +1,1 @@
+final ARG_MAIL_ITEM_BEAN="bean";

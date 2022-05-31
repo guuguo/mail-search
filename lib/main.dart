@@ -8,7 +8,17 @@ import 'package:get/get.dart';
 import 'package:mail_search/route_config.dart';
 import 'package:mail_search/theme/darkmode.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
   if (Platform.isAndroid) {
     SystemUiOverlayStyle style = SystemUiOverlayStyle(
