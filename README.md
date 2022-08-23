@@ -2,6 +2,8 @@
 
 浙江民众咨询政府公开信件查询
 
+[android下载链接](http://fir.guuguo.top/qls2)
+
 ## 第三方插件使用说明
 
 1. 使用 FlutterJsonBeanFactory 插件 做json序列化操作
